@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RemoveItemsMarket.Functions {
@@ -25,6 +26,9 @@ namespace RemoveItemsMarket.Functions {
                     if (restFinish.StatusCode == HttpStatusCode.OK) {
                         Logger.info($"{count} have already been removed");
                         count++;
+                        Thread.Sleep(TimeSpan.FromSeconds(1));
+                    } else {
+                        Logger.error("I did not remove the item!");
                     }
                 }
             } catch (Exception e) {
