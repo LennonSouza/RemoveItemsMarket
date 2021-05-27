@@ -103,6 +103,12 @@ namespace SellCards {
                 goto TryAgain;
             }
 
+            if (response.StatusCode == HttpStatusCode.InternalServerError) {
+                Logger.error($"Request Error: {response.StatusCode}, next try in 10 secunds!");
+                Thread.Sleep(TimeSpan.FromSeconds(10));
+                goto TryAgain;
+            }
+
             return response;
         }
 
